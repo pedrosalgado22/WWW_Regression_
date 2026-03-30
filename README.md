@@ -4,28 +4,34 @@ A predictive modelling and customer segmentation project for Wonderful Wines of 
 
 **Course:** Foundational Aspects of Information (FAI) 2024/2025 — Nova IMS, Universidade Nova de Lisboa
 
+
+<img width="700" height="700" alt="Image" src="https://github.com/user-attachments/assets/2fc59af8-e183-45af-b025-5775e231826e" />
+
+
 ---
 
-## The Story Behind This Repo
+## The Story Behind This Repository
 
-This was my first predictive modelling project in university. The original assignment was completed in KNIME as required by the course, and included a [Kaggle competition](#kaggle-competition) where groups competed to achieve the highest prediction accuracy. I placed 12th — which didn't sit well with me.
+This was my first predictive modelling project in university. The original assignment was completed in KNIME as required by the course, and included a Kaggle competition in which groups competed to achieve the highest prediction accuracy. I placed 12th, 0.00524 behind first place, which was not where I wanted to be and made me want to come back and do better.
 
-Six months later, after learning machine learning and Python on my own, I came back to this project with one goal: **beat the #1 score on the Kaggle leaderboard.** Not for extra credit, not for a grade correction — just to prove to myself that I could.
+Six months later, after starting to learn machine learning on my own, I returned to this project with the goal to beat the #1 score on the Kaggle leaderboard.
 
-This repository is the result. A complete, ground-up Python implementation featuring thorough exploratory analysis, aggressive feature engineering, systematic model benchmarking, and ensemble methods — ultimately producing a prediction that **surpassed the top Kaggle score**, improving from **0.93091 → 0.93731**.
+This repository is the result. A complete Python implementation featuring exploratory analysis, feature engineering, systematic model benchmarking, and ensemble methods, ultimately producing a prediction that surpassed the top Kaggle score, improving from 0.93091 → 0.93731.
+
+
+<img width="1576" height="745" alt="image" src="https://github.com/user-attachments/assets/c9cfab69-0910-45da-b0f6-e1bf5edbd25e" />
+
 
 ---
 
 ## Project Objective
 
-Wonderful Wines of the World (WWW) is a specialty wine retailer serving 10,000 customers through catalogues, a website, and ten boutique shops. Beyond wine, WWW also sells curated accessories for wine connoisseurs — corkscrews, wine racks, tasting glasses, and more.
+Wonderful Wines of the World (WWW) is a specialty wine retailer serving 10,000 customers through catalogues, a website, and ten boutique shops. Beyond wine, WWW also sells curated accessories for wine connoisseurs, including corkscrews, wine racks, tasting glasses, and more.
 
 The company recently acquired a premium corkscrew extractor and wants to market it via direct mail. However, instead of mailing all 10,000 customers and absorbing the full cost, WWW conducted a pilot campaign: 2,000 randomly selected customers received the offer, and their purchase responses were recorded. The challenge is twofold:
 
 1. **Customer Segmentation** — Identify distinct groups of customers based on their value to the company, understand each group's characteristics, and inform tailored marketing strategies.
 2. **Predictive Modelling** — Using the 2,000 labeled responses, build a classification model to predict which of the remaining 8,000 customers are most likely to purchase the corkscrew and should receive the marketing offer.
-
-The goal is to minimise marketing costs, maximise return on investment, and enhance customer satisfaction through relevant, data-informed outreach.
 
 ---
 
@@ -46,18 +52,16 @@ The clustering component of the project was **not** part of the Kaggle evaluatio
 
 | Rank | Team | Score |
 |------|------|-------|
-| 🥇 1st | pdrramalho — Group 46 | 0.93615 |
+| 1st | Group 46 | 0.93615 |
 | ... | ... | ... |
 | 12th | **Group 38 (me)** | **0.93091** |
 
-### The Comeback
 
-Months after the competition closed, I revisited the project in Python and submitted a new prediction — `number1accuracy.csv` — achieving a **private score of 0.93731**, surpassing the #1 leaderboard score of 0.93615.
+Months after the competition closed, I revisited the project in Python and submitted a new prediction — `WW2st.csv` — achieving a **private score of 0.93731**, surpassing the #1 leaderboard score of 0.93615.
 
 | Submission | Private Score | Public Score |
 |------------|---------------|--------------|
 | `WW2st.csv` | **0.93731** | 0.93220 |
-| `WW2st(1).csv` | **0.93731** | 0.93220 |
 
 ---
 
@@ -66,7 +70,7 @@ Months after the competition closed, I revisited the project in Python and submi
 | File | Description |
 |------|-------------|
 | `finalWWWnotebook.ipynb` | Complete Python notebook — EDA, segmentation, feature engineering, modelling, and prediction |
-| `number1accuracy.csv` | Final prediction file (8,000 customers) that surpassed the #1 Kaggle score |
+| `number1accuracy.csv` | Final prediction file (8,000 customers) |
 | `FAI 2425 WWW Database.xls` | Original dataset — 2,000 labeled + 8,000 unlabeled customers |
 | `projectguidelines.pdf` | Course project brief and requirements |
 | `teachersugestions.md` | Teacher's improvement suggestions from the original KNIME submission |
@@ -77,12 +81,14 @@ Months after the competition closed, I revisited the project in Python and submi
 ## Data
 
 **Source:** Course-provided dataset (Nova IMS — FAI 2024/2025)
+
 **Scope:** 10,000 customers of Wonderful Wines of the World
+
 **Structure:**
 - `Mail` sheet — 2,000 customers who received the pilot offer (labeled with purchase outcome)
 - `BD` sheet — 8,000 customers to predict on (unlabeled)
 
-**Class Imbalance:** Only 145 out of 2,000 customers (7.25%) purchased the corkscrew — a significant imbalance that shaped every modelling decision.
+**Class Imbalance:** Only 145 out of 2,000 customers (7.25%) purchased the corkscrew.
 
 | Variable | Description |
 |----------|-------------|
@@ -102,7 +108,7 @@ Months after the competition closed, I revisited the project in Python and submi
 
 ### Exploratory Data Analysis
 
-The analysis began with understanding who buys and who doesn't. Group-level statistics revealed stark behavioural and demographic differences:
+The analysis began with trying to understanding who buys the corkscrew and who doesn't. Group-level statistics revealed stark behavioural and demographic differences:
 
 | Metric | Buyers | Non-Buyers |
 |--------|--------|------------|
@@ -115,13 +121,24 @@ The analysis began with understanding who buys and who doesn't. Group-level stat
 
 Buyers are **22 years older** on average, earn **56% more**, purchase **2.5× more often**, have spent **3× more** in total, and have purchased **more recently**. Education and tenure (`Dayswus`) showed negligible differences.
 
-**Boxplots** confirmed strong visual separation in Frequency and Monetary — with almost no overlap between buyers and non-buyers. Income and Age showed moderate separation.
+**Boxplots** confirmed strong visual separation in Frequency and Monetary, with almost no overlap between buyers and non-buyers. Income and Age showed moderate separation.
 
-**Recency** revealed a critical pattern: a large number of outliers — dormant clients who hadn't purchased in a very long time — were overwhelmingly non-buyers. Customers inactive for **110+ days almost never bought the corkscrew**. This made Recency a powerful predictor. However, these extreme values were skewing the data and making it harder to differentiate between "somewhat inactive" and "very inactive" customers, so Recency was capped at the upper bound and **log-transformed** for better model performance.
+**Recency** revealed a critical pattern: a large number of outliers (dormant clients who hadn't purchased in a very long time) were overwhelmingly non-buyers. Customers inactive for **110+ days almost never bought the corkscrew**. This made Recency a powerful predictor. However, these extreme values were skewing the data and making it harder to differentiate between "somewhat inactive" and "very inactive" customers, so Recency was capped at the upper bound and **log-transformed** for better model performance.
 
 **Monetary outliers** told a different story: a handful of non-buyers had extremely high spending — even above the buyer median. Investigation revealed these were wealthy clients who simply chose not to buy. They represent real customers and legitimate missed opportunities, not noise or errors. High spending alone doesn't guarantee a corkscrew purchase. Removing them would have hidden an important business insight, so they were retained.
 
-**Correlation analysis** confirmed that Monetary (strongest) and Frequency were the only variables exceeding 0.4 correlation with Spcork. Income and Age showed moderate correlation. Dayswus had near-zero predictive value. Notably, attempts to engineer a composite customer value formula that outperformed Monetary alone proved unsuccessful — Monetary's correlation was effectively impossible to surpass with any weighted combination.
+**Correlation analysis** confirmed that Monetary (strongest) and Frequency were the only variables exceeding 0.4 correlation with Spcork. Income and Age showed moderate correlation. Dayswus had near-zero predictive value. Notably, attempts to engineer a composite customer value formula that outperformed Monetary alone proved unsuccessful, as Monetary's correlation was effectively impossible to surpass with any weighted combination.
+
+---
+
+<img width="657" height="393" alt="Image" src="https://github.com/user-attachments/assets/216de700-9eae-40ab-bb9c-1ea617cf1f1b" />
+
+---
+
+<img width="764" height="682" alt="Image" src="https://github.com/user-attachments/assets/fa1b7010-06c6-47b1-a56d-6e1df465bac2" />
+
+---
+
 
 ### Feature Engineering
 
@@ -149,21 +166,63 @@ These features were designed to surface patterns that raw variables alone couldn
 All relevant variables were normalized and K-Means clustering was applied. Using the elbow method, **3 clusters** were identified as optimal — a clear inflection point after which marginal improvement drops sharply. While k=4 is defensible, three segments are more interpretable and actionable for marketing purposes.
 
 **Cluster 0 — Low-Value Customers (29.4% · 588 customers)**
-The youngest demographic with the lowest income, very infrequent purchases, and minimal total spend. However, their average spend per purchase is proportionally moderate — they buy rarely but spend reasonably when they do. These are potential growth customers if engagement can be increased through introductory offers or loyalty incentives.
+The youngest demographic with the lowest income, very infrequent purchases, and minimal total spend. However, their average spend per purchase is proportionally moderate: they buy rarely but spend reasonably when they do. These are potential growth customers if engagement can be increased through introductory offers or loyalty incentives.
 
 **Cluster 1 — Mid-Value Customers (44.3% · 886 customers)**
-The largest segment. Middle-aged customers with average income, moderate purchase frequency, and moderate monetary value. They represent the steady core of WWW's customer base — reliable but not exceptional. Targeted promotions could elevate some of these customers into higher engagement tiers.
+The largest segment. Middle-aged customers with average income, moderate purchase frequency, and moderate monetary value. They represent the steady core of WWW's customer base, reliable but not exceptional. Targeted promotions could elevate some of these customers into higher engagement tiers.
 
 **Cluster 2 — High-Value Customers (26.3% · 526 customers)**
-The smallest but most valuable segment. Oldest, wealthiest, most frequent buyers, and highest total and per-transaction spend. These are the loyal wine connoisseurs — the customers most likely to buy premium accessories like the corkscrew, and the ones WWW should prioritize in any direct marketing campaign.
+The smallest but most valuable segment. Oldest, wealthiest, most frequent buyers, and highest total and per-transaction spend. These are the loyal wine connoisseurs, the customers most likely to buy premium accessories like the corkscrew, and the ones WWW should prioritize in any direct marketing campaign.
 
-This segmentation allows WWW to send the right message to the right people — prioritizing high-value customers for premium product offers, nurturing mid-value customers toward greater engagement, and making informed decisions about whether to invest in re-engaging low-value or dormant segments.
+This segmentation allows WWW to send the right message to the right people: prioritizing high-value customers for premium product offers, nurturing mid-value customers toward greater engagement, and making informed decisions about whether to invest in re-engaging low-value or dormant segments.
 
 ### Predictive Modelling
 
-**Scaling:** All features were standardized using `StandardScaler`, fit on the training data only to prevent data leakage, then applied to both train and test sets.
+1. No missing values found across either dataset; all columns confirmed as integers
+2. Recency found to be highly right-skewed; log-transformed to reduce skewness and improve model performance
 
-**Validation:** Stratified 10-fold cross-validation was used throughout to preserve the severe class imbalance (7.25% buyers) across all folds and ensure robust, unbiased evaluation.
+<img width="695" height="470" alt="Image" src="https://github.com/user-attachments/assets/2f21eba4-33fc-4b02-a0fe-452e64920861" />
+
+
+
+
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+3. Monetary outliers capped at 2,589 in initial experiments, though later tests showed uncapped performed equally or better
+4. Recency outliers (dormant clients, 110+ days) capped at upper bound to improve differentiation between inactivity levels
+5. All features standardized using `StandardScaler`, fit on training data only to prevent data leakage
+6. Stratified 10-fold cross-validation used throughout to preserve the 7.25% class imbalance across folds
+
+<img width="540" height="374" alt="Image" src="https://github.com/user-attachments/assets/81960599-3399-490e-ab06-cc2890e8c812" />
+
+---
+
+
+
+
+
+
+
+
+
+
+
+7. Eight classifiers benchmarked, with top performers tuned via `GridSearchCV`
+8. Three ensemble strategies tested (hard, soft, and weighted voting) to maximize stability and accuracy
+9. Engineered features included based on measurable and consistent performance gains
+10. All experiments, parameters, and results tracked in markdown tables for full reproducibility
 
 **Benchmarking:** Eight classifiers were evaluated:
 
@@ -180,7 +239,7 @@ This segmentation allows WWW to send the right message to the right people — p
 
 KNN, XGBoost, and ensemble methods consistently performed best, with individual cross-validated accuracies reaching ~0.936.
 
-**Hyperparameter Tuning:** `GridSearchCV` was applied to the top-performing models (Random Forest, KNN, XGBoost, Gradient Boosting) with extensive parameter grids covering tree depth, number of estimators, learning rates, neighbour counts, and more.
+**Hyperparameter Tuning:** `GridSearchCV` was applied to the top-performing models (Random Forest, KNN, XGBoost, Gradient Boosting) with extensive parameter grids covering tree depth, number of estimators, learning rates, neighbour counts, and more. Best hyperparameters and scores were printed for each model, and predictions were generated on the test set individually before ensembling.
 
 **Ensemble Methods:** Three ensemble strategies were implemented using `VotingClassifier`:
 - **Hard Voting** — majority vote across models
@@ -188,6 +247,8 @@ KNN, XGBoost, and ensemble methods consistently performed best, with individual 
 - **Weighted Voting** — weighted by individual model performance
 
 The **soft voting ensemble** combining Random Forest, KNN, XGBoost, and Gradient Boosting achieved the highest and most consistent accuracy.
+
+**Submission Generation:** Predictions for the 8,000 test customers were saved as individual CSV files for each model (`submission_knnnovoting.csv`, `submission_xgbnovoting.csv`, `submission_gbnovoting.csv`, `submission_rfnovoting.csv`) as well as for each ensemble strategy (`submission_ensemble.csv`, `submission_soft.csv`, `submission_weighted.csv`), allowing for direct comparison and Kaggle submission of any variant.
 
 ### Experimentation & Tracking
 
@@ -208,15 +269,17 @@ Rigorous experimentation was conducted across multiple dimensions, with all resu
 - **Engineered features** provided measurable and consistent improvement
 - **Ensemble methods** (especially soft voting) were the most reliable top performers
 - **Single best models** varied between KNN and XGBoost across runs, but ensembles remained stable
+---
+<img width="989" height="590" alt="Image" src="https://github.com/user-attachments/assets/a70a8ba3-c874-40f9-8077-ad6455656a22" />
 
 ---
-
 ## Key Results
 
 | Metric | Value |
 |--------|-------|
 | Best Model | Soft Voting Ensemble (RF + KNN + XGBoost + GB) |
-| Best Private Score | **0.93731** |
+| Best Cross-Validated Accuracy | **0.93673** |
+| Best Kaggle Private Score | **0.93731** |
 | Original Kaggle Placement | 12th place — 0.93091 (KNIME) |
 | Former #1 Kaggle Score | 0.93615 |
 | Improvement Over #1 | **+0.00116** |
@@ -232,18 +295,21 @@ Rigorous experimentation was conducted across multiple dimensions, with all resu
 |------|---------|
 | Python 3 | Core analysis language |
 | Jupyter Notebook | Interactive development environment |
+| KNIME | Original modelling platform (course requirement) |
+| Microsoft Excel | Data inspection and initial exploration |
 | pandas | Data manipulation and analysis |
 | numpy | Numerical operations |
 | matplotlib / seaborn | Data visualization |
 | scikit-learn | Preprocessing, modelling, evaluation, pipelines, clustering |
 | xgboost | Gradient boosting classifier |
+| lightgbm | Gradient boosting (benchmarking) |
 | imbalanced-learn | Handling class imbalance |
 | feature-engine | Feature engineering utilities |
 | scipy / statsmodels | Statistical analysis, hierarchical clustering, distance metrics |
 | missingno | Missing data visualization |
 | shap / lime | Model explainability frameworks |
 | xlrd | Excel file reading |
-| lightgbm | Gradient boosting (benchmarking) |
+| Kaggle | Competition platform and submission evaluation |
 
 ---
 
