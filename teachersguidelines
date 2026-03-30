@@ -1,0 +1,43 @@
+Passando agora a alguns pontos mais concretos sobre o vosso trabalho, aqui ficam algumas observações que vos poderão ajudar a melhorar no futuro:
+1. Exploração de Dados
+
+    Fizeram uma das explorações mais completas sobre o conjunto de 2000 linhas, o que é de destacar. No entanto, a forma como apresentaram essa análise no relatório podia ter sido mais eficaz.
+    Incluíram diversos boxplots com conclusões importantes, mas o excesso de visualizações levou a ultrapassar o limite de 10 páginas. Recomendaria selecionar apenas os gráficos mais relevantes para o corpo do relatório e incluir os restantes nos anexos.
+    Importante: não exploraram os dados das 8000 linhas, o que era esperado e teria enriquecido consideravelmente a análise.
+
+2. Pré-processamento
+
+    De acordo com o vosso workflow no KNIME, removeram outliers de todas as variáveis, mas não explicaram a vossa estratégia para o fazer. Além disso, usaram o mesmo método em todas as variáveis sem avaliar se esse procedimento era adequado para cada uma delas.
+    Trataram missing values, mesmo quando a análise indicava que não existiam. Esta inconsistência deve ser evitada ou, pelo menos, justificada.
+    Mencionam várias transformações (normalização, seleção de variáveis, etc.), mas não fundamentam essas escolhas. Por exemplo, porque é que normalizaram os dados? Como selecionaram as variáveis com base na correlação?
+
+3. Segmentação de Clientes (Clustering)
+
+    A descrição dos clusters foi sólida, mas a utilização de variáveis normalizadas nos valores apresentados pode ser confusa. Por exemplo, referir que um cluster tem um income de 0,717 não é interpretável sem a referência ao valor original.
+    Apenas testaram o algoritmo K-means, sem justificarem essa escolha ou considerarem alternativas como hierarchical clustering, que poderiam oferecer uma perspetiva complementar.
+    Recomenda-se que os clusters não sejam referidos apenas como "Cluster 1", "Cluster 2", etc. Usem características descritivas dos grupos para transmitir melhor o perfil de cada segmento.
+    Adicionalmente, seria importante explicarem qual a utilidade prática da segmentação. Por exemplo, como é que estas divisões podem ser aplicadas a estratégias de marketing. Esta ligação não está clara no executive summary nem na introdução.
+
+4. Modelos Preditivos
+
+    Fizeram a divisão dos dados entre treino e teste, mas não o referem no relatório, o que é um ponto relevante e deveria ser incluído.
+    A escolha do modelo foi justificada com base em "maior estabilidade e accuracy", mas esta explicação é vaga. O que entendem por "estabilidade"? Menor variância entre execuções? Robustez a overfitting? Esta justificação deveria ter sido mais desenvolvida.
+    Nos plots relativos às decision trees, apresentam duas métricas de accuracy (ex: “Accuracy (Right)” e “Accuracy (Variable)”) mas não explicam o que cada uma representa. São métricas do treino ou da validação?
+
+5. Relatório e Comunicação
+
+    O executive summary deve funcionar como um resumo completo do projeto, incluindo as principais conclusões. Atualmente, a informação que colocaram nesta secção e na conclusão é demasiado semelhante. Seria mais eficaz evitar redundâncias e usar o executive summary como uma síntese final do que fizeram e aprenderam.
+    A linguagem ao longo do relatório nem sempre é clara. Há ideias com potencial, mas é importante saber comunicá-las de forma precisa. Por exemplo, na secção de criação de features, poderiam ter explicado melhor a motivação por trás dessas novas variáveis e a vossa metodologia.
+    Cada secção do relatório deve idealmente começar com uma pequena introdução contextualizadora. Apesar de não ter sido penalizado, este elemento facilita bastante a leitura e compreensão do relatório.
+
+6. KNIME Workflow
+
+    O workflow apresentado no KNIME estava bastante desorganizado, o que dificulta a leitura e compreensão do vosso processo.
+    No relatório apresentaram um excerto da vossa workflow, que explica como guardaram os vossos resultados. Nessa parte, encontrei várias coisas que não estão corretas:
+        De onde veio a variável CustID?
+        Utilizaram-na de alguma forma para treinar o modelo?
+        Tinham referido que não o iam fazer no relatório. Por isso, têm um dos dois erros. Treinaram o modelo com o ID ou não o foram buscar para gravar os resultados. 
+
+7. Organização de Ficheiros
+
+    Atenção à nomenclatura dos ficheiros. Quando um projeto define uma convenção específica, esta deve ser seguida rigorosamente.
